@@ -99,7 +99,8 @@ class FirstViewController: UITableViewController {
             //no me castea a object place
             //let place = origin.place
            //print(place?.name ?? "dos")
-     
+            
+            //recupero los UITextField
             let n = origin.nameTextField
             let d = origin.descriptionTextField
             
