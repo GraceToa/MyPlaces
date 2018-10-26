@@ -8,65 +8,59 @@
 
 import Foundation
 
+/*
+ Clase
+ */
 class ManagerPlaces{
     
-    var places = [Place]()
+    //Patrón Singleton
+    static let shared = ManagerPlaces()
     
-    init() {
-        
+    private var places = [Place]()
+    
+    private init() {}
+    
+    //Inserta un nuevo place en la lista de places
+    func append(_ place: Place)  {
+        places.append(place)
     }
     
-    //add place
-    func append(_ value: Place)  {
-        places.append(value)
-    }
-    
-    //count place
-    func GetCount()->Int {
+    //Retorna numero de places
+    func getCount()->Int {
         return places.count;
     }
     
-    //find position
-    func GetItemAt(position:Int) -> Place {
-        let posPlace = places[position]
-        return posPlace;
+    /*Return un place especificado por posición, si la posición no existiera en
+     la lista el método devuelve nil, para esto usamos un opcional Place? */
+    func getItemAt(position:Int) -> Place? {
+        //guard nos permite especificar alguna condición que debe cumplirse
+        guard position < places.count else {return nil}
+        return places[position];
     }
     
-    //find element by id
-    func GetItemById(id:String)->Place{
-        var placeById = Place()
-        for place in places  {
-            if place.id == id{
-                //save the object found
-                placeById=place
-            }
-        }
-        return placeById
+    /*Return un place con un id especifico, si el id no existe se controlara con un opcional*/
+    func getItemById(_ id: String)->Place?{
+        return places.filter{$0.id == id}.first
     }
     
-    //remove place into places
-    func remove(_ value:Place){
-        if let index = places.index(where: {$0.name == value.name}) {
+    //Remove un place desde la lista
+    func remove(_ place:Place){
+        if let index = places.index(where: {$0.name == place.name}) {
             places.remove(at: index)
         }
     }
     
-    
-    //******************************************
-    // Singleton
-    //
-    //  Unique instance for all App
-    //
-    
-     static var sharedManagerPlaces: ManagerPlaces = {
+   //Only for demo purposes
+    var someTestPlace = [
+        Place(name: "UOC 22@",
+              description: "Seu de la Universitat Oberta de Catalunya"),
+        Place(name: "Rostisseria Lolita",
+              description: "Els millors pollastres de Sant Cugat"),
+        Place(name: "CIFO L'Hospitalet",
+              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació")
+       
         
-        var singletonManager:ManagerPlaces
-        
-        singletonManager = ManagerPlaces()
-        
-        return singletonManager
-    }()
-    
+    ]
     
     
     

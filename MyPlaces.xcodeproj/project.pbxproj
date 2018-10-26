@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C028EA962160BEAF0032FC12 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA952160BEAF0032FC12 /* DetailController.swift */; };
+		C00C5CA3217DA3B00060A6E8 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */; };
+		C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */; };
 		C028EA9A2160C2A90032FC12 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA992160C2A90032FC12 /* Place.swift */; };
 		C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */; };
 		C0685AF1215BA6B900CC5E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685AF0215BA6B900CC5E0E /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 		C0685B08215BA6C700CC5E0E /* MyPlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685B07215BA6C700CC5E0E /* MyPlacesTests.swift */; };
 		C0685B13215BA6C700CC5E0E /* MyPlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685B12215BA6C700CC5E0E /* MyPlacesUITests.swift */; };
 		C0685B60215BCD1300CC5E0E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0685B5F215BCD1300CC5E0E /* MapKit.framework */; };
+		C0C718E52180BEF700918F42 /* AddEditPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C718E42180BEF700918F42 /* AddEditPlaceTableViewController.swift */; };
 		C0FE2C0F21614CE5004CD2C1 /* ManagerPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE2C0E21614CE5004CD2C1 /* ManagerPlaces.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C028EA952160BEAF0032FC12 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		C028EA992160C2A90032FC12 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
 		C0685AED215BA6B900CC5E0E /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +61,7 @@
 		C0685B12215BA6C700CC5E0E /* MyPlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesUITests.swift; sourceTree = "<group>"; };
 		C0685B14215BA6C700CC5E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0685B5F215BCD1300CC5E0E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C0C718E42180BEF700918F42 /* AddEditPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditPlaceTableViewController.swift; sourceTree = "<group>"; };
 		C0FE2C0E21614CE5004CD2C1 /* ManagerPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPlaces.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,15 +117,17 @@
 			children = (
 				C0685AF0215BA6B900CC5E0E /* AppDelegate.swift */,
 				C0685AF2215BA6B900CC5E0E /* FirstViewController.swift */,
+				C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */,
 				C0685AF4215BA6B900CC5E0E /* SecondViewController.swift */,
 				C0685AF6215BA6B900CC5E0E /* Main.storyboard */,
 				C0685AF9215BA6C600CC5E0E /* Assets.xcassets */,
 				C0685AFB215BA6C600CC5E0E /* LaunchScreen.storyboard */,
 				C0685AFE215BA6C600CC5E0E /* Info.plist */,
-				C028EA952160BEAF0032FC12 /* DetailController.swift */,
 				C028EA992160C2A90032FC12 /* Place.swift */,
 				C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */,
 				C0FE2C0E21614CE5004CD2C1 /* ManagerPlaces.swift */,
+				C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */,
+				C0C718E42180BEF700918F42 /* AddEditPlaceTableViewController.swift */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -289,8 +295,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */,
-				C028EA962160BEAF0032FC12 /* DetailController.swift in Sources */,
+				C0C718E52180BEF700918F42 /* AddEditPlaceTableViewController.swift in Sources */,
+				C00C5CA3217DA3B00060A6E8 /* PlaceDetailViewController.swift in Sources */,
 				C0685AF5215BA6B900CC5E0E /* SecondViewController.swift in Sources */,
+				C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */,
 				C0685AF1215BA6B900CC5E0E /* AppDelegate.swift in Sources */,
 				C0685AF3215BA6B900CC5E0E /* FirstViewController.swift in Sources */,
 				C0FE2C0F21614CE5004CD2C1 /* ManagerPlaces.swift in Sources */,

@@ -10,15 +10,15 @@ import Foundation
 
 class PlaceTourist: Place {
     
-    var discount_tourist:String = ""
+    var discount_tourist  = ""
     
     override init() {
         super.init()
-        type = .TouristcPlace
+        self.type = .touristcPlace
     }
     
     init(name:String,description:String,discount_tourist:String,image_in:Data?) {
-        super.init(type:.TouristcPlace,name:name,description:description,image_in:image_in)
+        super.init(type:.touristcPlace,name:name,description:description,image_in:image_in)
         self.discount_tourist=discount_tourist
     }
     
