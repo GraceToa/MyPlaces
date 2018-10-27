@@ -18,6 +18,8 @@ class Place {
         case touristcPlace
     }
     
+    //MARK: Properties
+    
     var id: String = ""
     var type: PlaceTypes = .genericPlace
     var name: String?
@@ -25,6 +27,7 @@ class Place {
     var location: CLLocationCoordinate2D!
     var image: Data?
     
+    //MARK: Initialization
     
     init(){
         self.id = UUID().uuidString

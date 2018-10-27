@@ -12,18 +12,12 @@ import UIKit
 
 class FirstViewController: UITableViewController {
   
-    var places: [Place] = ManagerPlaces.shared.someTestPlace
 
     //oculta los iconos del emulador
     override var prefersStatusBarHidden: Bool{
         return true
     }
-    
-    //acción enlazado al boton Add, envia a ViewController donde se editara o añadira un nuevo Place
-    @IBAction func goToView(_ sender: Any) {
-        performSegue(withIdentifier: "EditSavePlace", sender: self)
-    }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +29,12 @@ class FirstViewController: UITableViewController {
         //load examples
         let manager = ManagerPlaces.shared
              for place in manager.someTestPlace{
-                    manager.append(place)
+                manager.append(place)
                 }
         
     }
+    
+    //MARK: Methods
     
     //Método que retorna cuantas secciones tendrá la tabla. devuelve 1 por default
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,30 +85,29 @@ class FirstViewController: UITableViewController {
         }
     }
     
+    
+    
+    //MARK: Actions
+    
+    //acción enlazado al boton Add, envia a ViewController donde se editara o añadira un nuevo Place
+    @IBAction func goToView(_ sender: Any) {
+        performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
+    }
+    
     //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior
     //de nuestro Storyboard
     //ref: www.efectoapple.con/conceptos/#UnwindSegue
-    @IBAction func savePlaceDetail(_ segue: UIStoryboardSegue){
-      
-        if let origin = segue.source as? AddEditPlaceTableViewController {
-   
-            //no me castea a object place
-            //let place = origin.place
-           //print(place?.name ?? "dos")
-            
-            //recupero los UITextField
-            let n = origin.nameTextField
-            let d = origin.descriptionTextField
-            
-            let place = Place(name: n?.text, description: d?.text)
-            let newIndexPath = IndexPath(row:places.count - 1, section: 0)
-            places.append(place)
-            
+    @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
+         
+            let newIndexPath = IndexPath(row: ManagerPlaces.shared.someTestPlace.count, section: 0)
+            ManagerPlaces.shared.someTestPlace.append(place)
+
             tableView.beginUpdates()
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             tableView.endUpdates()
             
-            for place in  places{
+            for place in  ManagerPlaces.shared.someTestPlace{
                 print(place.name ?? "nop")
             }
         }

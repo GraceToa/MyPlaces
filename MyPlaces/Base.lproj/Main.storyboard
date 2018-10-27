@@ -135,7 +135,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="3rr-oG-Uld" kind="show" identifier="EditSavePlace" id="0Hx-DI-JpD"/>
+                        <segue destination="3rr-oG-Uld" kind="presentation" identifier="AddEditPlaceSegue" id="0Hx-DI-JpD"/>
                         <segue destination="pec-4X-mJh" kind="showDetail" identifier="ShowPlaceDetail" id="OFm-Ib-Yoj"/>
                     </connections>
                 </tableViewController>
@@ -281,15 +281,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LKx-1J-W6I" userLabel="nameTextField">
-                                                    <rect key="frame" x="16" y="10" width="343" height="30"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9r-wY-1rE">
+                                                    <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="jjj:" destination="mbd-YM-W7z" eventType="editingDidEnd" id="WVV-P5-rGR"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -305,11 +302,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X4Z-ta-y42" userLabel="descriptionTextField">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="puR-ZK-Fcd">
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -327,19 +324,20 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" width="14" id="3AF-nP-vZF"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" width="11" id="tQP-Hu-aIt">
                             <connections>
-                                <segue destination="mbd-YM-W7z" kind="unwind" unwindAction="savePlaceDetail:" id="Uie-XK-dmZ"/>
+                                <segue destination="mbd-YM-W7z" kind="unwind" unwindAction="unwindAddEditPlaceDetailWithSender:" id="xVS-Wj-uj4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionTextField" destination="X4Z-ta-y42" id="sRX-sg-SFN"/>
-                        <outlet property="nameTextField" destination="LKx-1J-W6I" id="k88-fn-e0b"/>
+                        <outlet property="descriptionTextField" destination="puR-ZK-Fcd" id="fgB-Ig-uFE"/>
+                        <outlet property="nameTextField" destination="X9r-wY-1rE" id="BrD-Fr-Sec"/>
+                        <outlet property="saveButton" destination="tQP-Hu-aIt" id="m80-St-V8r"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDX-wG-lYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mbd-YM-W7z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3238" y="-554"/>
+            <point key="canvasLocation" x="3237.5999999999999" y="-554.57271364317842"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9xK-QC-1uC">
@@ -362,7 +360,7 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="loc" width="1200" height="900"/>
+        <image name="loc" width="600" height="450"/>
         <image name="nav" width="1844" height="1920"/>
         <image name="second" width="30" height="30"/>
     </resources>
