@@ -18,7 +18,6 @@ class FirstViewController: UITableViewController {
         return true
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //to set delegate and dataSource for our UITableView!
@@ -31,7 +30,6 @@ class FirstViewController: UITableViewController {
              for place in manager.someTestPlace{
                 manager.append(place)
                 }
-        
     }
     
     //MARK: Methods
@@ -53,7 +51,6 @@ class FirstViewController: UITableViewController {
         let placeElement = ManagerPlaces.shared.getItemAt(position: indexPath.item)!
         cell.namePlaceLabel.text = placeElement.name
         cell.descriptionPlaceLabel.text = placeElement.description
-        
         return cell
     }
     
@@ -63,8 +60,7 @@ class FirstViewController: UITableViewController {
         return 100
     }
     
-    //Método interno, iOS lo llamará cuando seleccionemos un item y queremos hacer
-     //algo como navegar a una pantalla diferente
+    //Método interno, iOS lo llamará cuando seleccionemos un item y queremos hacer algo como navegar a una pantalla diferente
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // First we find out what place the user has selected.
         let place = ManagerPlaces.shared.getItemAt(position: indexPath.row)
@@ -72,10 +68,7 @@ class FirstViewController: UITableViewController {
         performSegue(withIdentifier: "ShowPlaceDetail", sender: place)
     }
     
-    //Cuando le pedimos a la aplicación que tome una ruta (performSegue), iOs llama a este método
-    //en caso de que se requiera alguna preparación. En este caso,solo estamos comprobando
-    //que ruta tomar,y si esta es "ShowPlaceDetail" primero, enviamos el objeto place a la pantalla
-    //de destino
+    /*Cuando le pedimos a la aplicación que tome una ruta (performSegue), iOs llama a este método en caso de que se requiera alguna preparación. En este caso,solo estamos comprobando que ruta tomar,y si esta es "ShowPlaceDetail" primero, enviamos el objeto place a la pantalla de destino*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPlaceDetail" {
             if let dc = segue.destination as? PlaceDetailViewController{
@@ -94,22 +87,11 @@ class FirstViewController: UITableViewController {
         performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
     }
     
-    //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior
-    //de nuestro Storyboard
-    //ref: www.efectoapple.con/conceptos/#UnwindSegue
+    //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
     @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
-         
-            let newIndexPath = IndexPath(row: ManagerPlaces.shared.someTestPlace.count, section: 0)
-            ManagerPlaces.shared.someTestPlace.append(place)
-
-            tableView.beginUpdates()
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-            tableView.endUpdates()
-            
-            for place in  ManagerPlaces.shared.someTestPlace{
-                print(place.name ?? "nop")
-            }
+            ManagerPlaces.shared.append(place)
+            tableView.reloadData()
         }
     }
   

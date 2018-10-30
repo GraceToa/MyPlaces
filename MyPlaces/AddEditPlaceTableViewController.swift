@@ -50,9 +50,9 @@ class AddEditPlaceTableViewController: UITableViewController,UITextFieldDelegate
             return
         }
             let nameP = nameTextField.text ?? ""
-            let descP = nameTextField.text ?? ""
+            let descP = descriptionTextField.text ?? ""
             
-            place = Place(name: nameP, description: descP)
+            place = Place(name: nameP, description: descP, image_in: nil)
             
         
     }

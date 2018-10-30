@@ -13,23 +13,26 @@ class PlaceDetailViewController: UIViewController {
     var place: Place?
     
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
+
+    @IBOutlet weak var nameP: UILabel!
     
-    @IBOutlet weak var namePlace: UILabel!
+    @IBOutlet weak var descriptP: UILabel!
+    @IBOutlet weak var discountP: UILabel!
+    @IBOutlet weak var locationP: UILabel!
     
-    @IBOutlet weak var descriptionPlace: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            namePlace.text = place?.name
-            descriptionPlace.text = place?.description
+        nameP.text = place?.name
+        descriptP.text = place?.description
         
     }
     
-    
-    @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    //MARK: Actions
 
+    @IBAction func close(_ sender: Any) {
+         dismiss(animated: true, completion: nil)
+    }
 }

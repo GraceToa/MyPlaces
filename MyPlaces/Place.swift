@@ -33,11 +33,11 @@ class Place {
         self.id = UUID().uuidString
     }
     
-    init(name:String?,description:String?) {
+    init(name:String?,description:String?, image_in:Data?) {
         self.id = UUID().uuidString
         self.name = name
         self.description = description
-      
+        self.image = image_in
     }
     
     

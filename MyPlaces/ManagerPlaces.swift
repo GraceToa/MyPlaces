@@ -52,13 +52,22 @@ class ManagerPlaces{
     
    //Only for demo purposes
     var someTestPlace = [
+        
         Place(name: "UOC 22@",
-              description: "Seu de la Universitat Oberta de Catalunya"),
+              description: "Seu de la Universitat Oberta de Catalunya",
+              image_in: nil),
         Place(name: "Rostisseria Lolita",
-              description: "Els millors pollastres de Sant Cugat"),
+              description: "Els millors pollastres de Sant Cugat",
+              image_in: nil),
         Place(name: "CIFO L'Hospitalet",
-              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació")
-       
+              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
+              image_in: nil),
+        PlaceTourist(name: "CosmoCaixa",
+                     description: "Museu de la Ciència de Barcelona",
+                     discount_tourist: "50%", image_in: nil),
+        PlaceTourist(name: "Park Güell",
+                     description: "Obra d'Antoni Gaudí a Barcelona",
+                     discount_tourist: "10%", image_in: nil)
         
     ]
     
