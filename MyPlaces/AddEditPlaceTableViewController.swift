@@ -11,10 +11,11 @@ import os.log
 
 class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     
+    //MARK: Properties
+    //instancia para añadir un nuevo place y pasarlo a FirstViewController
     var place: Place?
     
-    //MARK: Properties
-    
+    //MARK: IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -32,7 +33,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
             nameTextField.text = place.name
             descriptionTextField.text = place.description
         }
-        //activa el boton save solo si el textField tiene nombre de place
+        //activa el boton save solo si el textField tiene description de place
         updateSaveButtonState()
     }
 
@@ -60,7 +61,6 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     //MARK: Acitons
     //MARK: Navigation
 
-    
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
@@ -76,15 +76,18 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    //Método que permite configurar datos que enviar al source ViewController (FirstViewController)
+    //se usa un unwind segue(save Button) que retrocede un segmento
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
+        //verifica que el remitente es un botón
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
                 os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
             let nameP = nameTextField.text ?? ""
             let descP = descriptionTextField.text ?? ""
+        //instancia un place que se pasa a FirstViewController
             place = Place(name: nameP, description: descP, image_in: nil)
     }
 
@@ -95,7 +98,9 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     private func updateSaveButtonState(){
         //desactiva el boton guardar si el textField esta vacio
         let textD = descriptionTextField.text ?? ""
+        let textN = nameTextField.text ?? ""
         saveButton.isEnabled = !textD.isEmpty
+        saveButton.isEnabled = !textN.isEmpty
 
     }
     

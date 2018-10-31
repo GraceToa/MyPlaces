@@ -10,6 +10,7 @@ import UIKit
 
 class PlaceTableViewCell: UITableViewCell {
 
+    //MARK: IBOutlets
     @IBOutlet weak var namePlaceLabel: UILabel!
     
     @IBOutlet weak var descriptionPlaceLabel: UILabel!

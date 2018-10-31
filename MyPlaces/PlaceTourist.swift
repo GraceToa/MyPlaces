@@ -10,12 +10,15 @@ import Foundation
 
 class PlaceTourist: Place {
     
+    //MARK: Properties
     var discount_tourist  = ""
     
     override init() {
         super.init()
         self.type = .touristcPlace
     }
+    
+    //MARK: Initialization
     
     init(name:String,description:String,discount_tourist:String,image_in:Data?) {
         super.init(type:.touristcPlace,name:name,description:description,image_in:image_in)

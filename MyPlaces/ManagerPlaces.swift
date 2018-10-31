@@ -8,18 +8,17 @@
 
 import Foundation
 
-/*
- Clase
- */
+
 class ManagerPlaces{
     
+    //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
     
     private var places = [Place]()
+
     
-    private init() {}
-    
+    //MARK: Private Methods
     //Inserta un nuevo place en la lista de places
     func append(_ place: Place)  {
         places.append(place)

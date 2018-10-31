@@ -21,11 +21,13 @@ class FirstViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //to set delegate and dataSource for our UITableView!
         let view = self.view as! UITableView
         //se ha de informar siempre (manual o automatico)
         view.delegate = self
         view.dataSource = self
+        
         //load examples
         let manager = ManagerPlaces.shared
              for place in manager.someTestPlace{
@@ -33,7 +35,7 @@ class FirstViewController: UITableViewController {
                 }
     }
     
-    //MARK: Methods
+    //MARK: - TableView Methods
   
     //Método que retorna numero de elementos para cargar
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,7 +52,6 @@ class FirstViewController: UITableViewController {
         return cell
     }
     
-    /**/
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //devuelve altura de la fila situada en una posición determinada
         return 100
@@ -61,6 +62,7 @@ class FirstViewController: UITableViewController {
     //MARK: Actions
     
     //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
+    //Un unwind segue puede retroceder uno o más segmentos para devolver a un Viewcontroller específico
     //Manejamos los dos casos: agregar un nuevo place y editar uno existente
     @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
