@@ -14,6 +14,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     var place: Place?
     
     //MARK: Properties
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -21,20 +22,23 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Handle the text field’s user input through delegate callbacks.
          nameTextField.delegate = self
-        //activa el boton save solo si el textField tiene nombre de place
-        updateSaveButtonState()
-        
-        // Set up views if editing an existing Meal.
+
+        // Configura vistas si se edita un place existente
         if let place = place {
+            navigationItem.title = place.name
             nameTextField.text = place.name
             descriptionTextField.text = place.description
         }
+        //activa el boton save solo si el textField tiene nombre de place
+        updateSaveButtonState()
     }
 
     
     //MARK: UITextFieldDelegate
+    
     //se llama a este método cuando comienza una sesión de edición.
     //Se desabilita el botón save mientras se edita el campo de texto
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -86,21 +90,14 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
 
     
     //MARK: Private Methods
+    
     //método auxiliar para desactivar el botón guardar si el Text Field está vacio
     private func updateSaveButtonState(){
         //desactiva el boton guardar si el textField esta vacio
         let textD = descriptionTextField.text ?? ""
-        
         saveButton.isEnabled = !textD.isEmpty
 
     }
-    
-    
-    
-    
-    
-    
-    
     
     
 }//end class

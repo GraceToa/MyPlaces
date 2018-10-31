@@ -57,6 +57,35 @@ class FirstViewController: UITableViewController {
     }
     
 
+    
+    //MARK: Actions
+    
+    //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
+    //Manejamos los dos casos: agregar un nuevo place y editar uno existente
+    @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
+            
+           //se verifica si una fila(row) de la tabla está seleccionada para editarla
+            if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
+                
+                //no funciona
+               // ManagerPlaces.shared.someTestPlace[selectedIndexPath.row] = place
+                
+                //busco ese place en el array lo reemplazo por los nuevos datos
+                let p = ManagerPlaces.shared.getItemAt(position: selectedIndexPath.row)
+                p?.name = place.name
+                p?.description = place.description
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else{
+                //Add nuevo place
+                ManagerPlaces.shared.append(place)
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    
     /*Cuando le pedimos a la aplicación que tome una ruta (performSegue), iOs llama a este método en caso de que se requiera alguna preparación. En este caso,solo estamos comprobando que ruta tomar,y si esta es "ShowPlaceDetail" primero, enviamos el objeto place a la pantalla de destino*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPlaceDetail" {
@@ -69,18 +98,6 @@ class FirstViewController: UITableViewController {
         }
     }
     
-    
-    //MARK: Actions
-
-    
-    //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
-    @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
-        if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
-            ManagerPlaces.shared.append(place)
-            tableView.reloadData()
-        }
-    }
-  
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
     }
