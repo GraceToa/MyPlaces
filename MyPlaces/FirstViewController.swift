@@ -57,6 +57,13 @@ class FirstViewController: UITableViewController {
         return 100
     }
     
+    //Método que borra un place, Cuando el usuario se desliza horizontalmente a través de una fila,
+    //el estilo de edición de la celda se configura para eliminar
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let indexPathCell = ManagerPlaces.shared.getItemAt(position: indexPath.row)
+        ManagerPlaces.shared.remove(indexPathCell!)
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
 
     
     //MARK: Actions
