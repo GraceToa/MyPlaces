@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C00C5CA3217DA3B00060A6E8 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */; };
 		C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */; };
 		C028EA9A2160C2A90032FC12 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA992160C2A90032FC12 /* Place.swift */; };
 		C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */; };
@@ -42,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
 		C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		C028EA992160C2A90032FC12 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				C028EA992160C2A90032FC12 /* Place.swift */,
 				C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */,
 				C0FE2C0E21614CE5004CD2C1 /* ManagerPlaces.swift */,
-				C00C5CA2217DA3B00060A6E8 /* PlaceDetailViewController.swift */,
 				C0C718E42180BEF700918F42 /* AddEditPlaceTableViewController.swift */,
 			);
 			path = MyPlaces;
@@ -296,7 +293,6 @@
 			files = (
 				C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */,
 				C0C718E52180BEF700918F42 /* AddEditPlaceTableViewController.swift in Sources */,
-				C00C5CA3217DA3B00060A6E8 /* PlaceDetailViewController.swift in Sources */,
 				C0685AF5215BA6B900CC5E0E /* SecondViewController.swift in Sources */,
 				C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */,
 				C0685AF1215BA6B900CC5E0E /* AppDelegate.swift in Sources */,

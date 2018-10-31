@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import os.log
 
 class FirstViewController: UITableViewController {
   
@@ -33,12 +34,7 @@ class FirstViewController: UITableViewController {
     }
     
     //MARK: Methods
-    
-    //Método que retorna cuantas secciones tendrá la tabla. devuelve 1 por default
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+  
     //Método que retorna numero de elementos para cargar
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ManagerPlaces.shared.getCount()
@@ -60,32 +56,22 @@ class FirstViewController: UITableViewController {
         return 100
     }
     
-    //Método interno, iOS lo llamará cuando seleccionemos un item y queremos hacer algo como navegar a una pantalla diferente
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // First we find out what place the user has selected.
-        let place = ManagerPlaces.shared.getItemAt(position: indexPath.row)
-        // Then we ask the app to take the "ShowPlaceDetail" road (segue) to a different screen.
-        performSegue(withIdentifier: "ShowPlaceDetail", sender: place)
-    }
-    
+
     /*Cuando le pedimos a la aplicación que tome una ruta (performSegue), iOs llama a este método en caso de que se requiera alguna preparación. En este caso,solo estamos comprobando que ruta tomar,y si esta es "ShowPlaceDetail" primero, enviamos el objeto place a la pantalla de destino*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPlaceDetail" {
-            if let dc = segue.destination as? PlaceDetailViewController{
-                
-                dc.place = sender as? Place
+            if let dc = segue.destination as? AddEditPlaceTableViewController{
+                let cell = sender as! PlaceTableViewCell
+                let indexPath = tableView.indexPath(for: cell )
+                let selectPlace = ManagerPlaces.shared.getItemAt(position: (indexPath?.row)!)
+                dc.place = selectPlace
             }
         }
     }
     
     
-    
     //MARK: Actions
-    
-    //acción enlazado al boton Add, envia a ViewController donde se editara o añadira un nuevo Place
-    @IBAction func goToView(_ sender: Any) {
-        performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
-    }
+
     
     //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
     @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
@@ -95,7 +81,10 @@ class FirstViewController: UITableViewController {
         }
     }
   
-  
+    @IBAction func addButton(_ sender: Any) {
+        performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
+    }
+    
 
 }//end class
 
