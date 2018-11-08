@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import os.log
 
 class FirstViewController: UITableViewController {
   
@@ -94,19 +93,18 @@ class FirstViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowPlaceDetail" {
-            if let navController = segue.destination as? UINavigationController{
-                if let dc = navController.topViewController as? DetailPlaceViewController{
+          
+                if let dc = segue.destination as? DetailPlaceViewController{
                     let cell = sender as! PlaceTableViewCell
                     let indexPath = tableView.indexPath(for: cell )
                     let selectPlace = ManagerPlaces.shared.getItemAt(position: (indexPath?.row)!)
                     dc.place = selectPlace
                 }
-            }
         }
     }
     
     @IBAction func addButton(_ sender: Any) {
-        performSegue(withIdentifier: "AddEditPlaceSegue", sender: self)
+        performSegue(withIdentifier: "ShowAddEditPlace", sender: self)
     }
     
 
