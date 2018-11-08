@@ -14,11 +14,6 @@ import os.log
 class FirstViewController: UITableViewController {
   
 
-    //oculta los iconos del emulador
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,12 +92,15 @@ class FirstViewController: UITableViewController {
     
     /*Cuando le pedimos a la aplicación que tome una ruta (performSegue), iOs llama a este método en caso de que se requiera alguna preparación. En este caso,solo estamos comprobando que ruta tomar,y si esta es "ShowPlaceDetail" primero, enviamos el objeto place a la pantalla de destino*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "ShowPlaceDetail" {
-            if let dc = segue.destination as? AddEditPlaceTableViewController{
-                let cell = sender as! PlaceTableViewCell
-                let indexPath = tableView.indexPath(for: cell )
-                let selectPlace = ManagerPlaces.shared.getItemAt(position: (indexPath?.row)!)
-                dc.place = selectPlace
+            if let navController = segue.destination as? UINavigationController{
+                if let dc = navController.topViewController as? DetailPlaceViewController{
+                    let cell = sender as! PlaceTableViewCell
+                    let indexPath = tableView.indexPath(for: cell )
+                    let selectPlace = ManagerPlaces.shared.getItemAt(position: (indexPath?.row)!)
+                    dc.place = selectPlace
+                }
             }
         }
     }

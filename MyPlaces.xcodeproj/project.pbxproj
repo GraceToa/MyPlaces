@@ -10,9 +10,9 @@
 		C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */; };
 		C028EA9A2160C2A90032FC12 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA992160C2A90032FC12 /* Place.swift */; };
 		C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */; };
+		C0525056219308DD005D2449 /* DetailPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0525055219308DD005D2449 /* DetailPlaceViewController.swift */; };
 		C0685AF1215BA6B900CC5E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685AF0215BA6B900CC5E0E /* AppDelegate.swift */; };
 		C0685AF3215BA6B900CC5E0E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685AF2215BA6B900CC5E0E /* FirstViewController.swift */; };
-		C0685AF5215BA6B900CC5E0E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685AF4215BA6B900CC5E0E /* SecondViewController.swift */; };
 		C0685AF8215BA6B900CC5E0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0685AF6215BA6B900CC5E0E /* Main.storyboard */; };
 		C0685AFA215BA6C600CC5E0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0685AF9215BA6C600CC5E0E /* Assets.xcassets */; };
 		C0685AFD215BA6C600CC5E0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0685AFB215BA6C600CC5E0E /* LaunchScreen.storyboard */; };
@@ -44,10 +44,10 @@
 		C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		C028EA992160C2A90032FC12 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
+		C0525055219308DD005D2449 /* DetailPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceViewController.swift; sourceTree = "<group>"; };
 		C0685AED215BA6B900CC5E0E /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0685AF0215BA6B900CC5E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0685AF2215BA6B900CC5E0E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		C0685AF4215BA6B900CC5E0E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C0685AF7215BA6B900CC5E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0685AF9215BA6C600CC5E0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0685AFC215BA6C600CC5E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 				C0685AF0215BA6B900CC5E0E /* AppDelegate.swift */,
 				C0685AF2215BA6B900CC5E0E /* FirstViewController.swift */,
 				C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */,
-				C0685AF4215BA6B900CC5E0E /* SecondViewController.swift */,
 				C0685AF6215BA6B900CC5E0E /* Main.storyboard */,
 				C0685AF9215BA6C600CC5E0E /* Assets.xcassets */,
 				C0685AFB215BA6C600CC5E0E /* LaunchScreen.storyboard */,
@@ -125,6 +124,7 @@
 				C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */,
 				C0FE2C0E21614CE5004CD2C1 /* ManagerPlaces.swift */,
 				C0C718E42180BEF700918F42 /* AddEditPlaceTableViewController.swift */,
+				C0525055219308DD005D2449 /* DetailPlaceViewController.swift */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -293,9 +293,9 @@
 			files = (
 				C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */,
 				C0C718E52180BEF700918F42 /* AddEditPlaceTableViewController.swift in Sources */,
-				C0685AF5215BA6B900CC5E0E /* SecondViewController.swift in Sources */,
 				C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */,
 				C0685AF1215BA6B900CC5E0E /* AppDelegate.swift in Sources */,
+				C0525056219308DD005D2449 /* DetailPlaceViewController.swift in Sources */,
 				C0685AF3215BA6B900CC5E0E /* FirstViewController.swift in Sources */,
 				C0FE2C0F21614CE5004CD2C1 /* ManagerPlaces.swift in Sources */,
 				C028EA9A2160C2A90032FC12 /* Place.swift in Sources */,

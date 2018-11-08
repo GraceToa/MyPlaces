@@ -20,6 +20,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
             nameTextField.text = place.name
             descriptionTextField.text = place.description
         }
+  
         //activa el boton save solo si el textField tiene description de place
         updateSaveButtonState()
     }
