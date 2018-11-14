@@ -25,6 +25,9 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
+
+        
         // Handle the text field’s user input through delegate callbacks.
          nameTextField.delegate = self
 

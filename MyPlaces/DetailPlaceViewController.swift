@@ -20,6 +20,8 @@ class DetailPlaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
+        title = place?.name
         if let place = place {
             nameP.text = place.name
             descriptionP.text = place.description

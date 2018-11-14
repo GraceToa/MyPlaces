@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "nav.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "titulNI.png",
       "scale" : "2x"
     },
     {

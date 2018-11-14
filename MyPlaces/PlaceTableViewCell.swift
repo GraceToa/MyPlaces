@@ -17,17 +17,18 @@ class PlaceTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imagePlaceLabel: UIImageView!
     
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var backgroundImageView: UIImageView! {
+        didSet{
+            backgroundImageView.layer.cornerRadius = 20
+        }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func bind(place: Place){
+        
+        namePlaceLabel.text = place.name
+        descriptionPlaceLabel.text = place.description
+        
     }
 
 }

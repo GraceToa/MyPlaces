@@ -16,6 +16,8 @@ class FirstViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Places", style: .plain, target: nil, action: nil)
         //to set delegate and dataSource for our UITableView!
         let view = self.view as! UITableView
         //se ha de informar siempre (manual o automatico)
@@ -28,7 +30,7 @@ class FirstViewController: UITableViewController {
                 manager.append(place)
                 }
     }
-    
+ 
     //MARK: - TableView Methods
   
     //Método que retorna numero de elementos para cargar
@@ -40,9 +42,9 @@ class FirstViewController: UITableViewController {
     //llama a este método construye las celdas con los objetos de la lista que le corresponde
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
-        let placeElement = ManagerPlaces.shared.getItemAt(position: indexPath.item)!
-        cell.namePlaceLabel.text = placeElement.name
-        cell.descriptionPlaceLabel.text = placeElement.description
+        let placeCell = ManagerPlaces.shared.getItemAt(position: indexPath.item)!
+        cell.bind(place: placeCell)
+        
         return cell
     }
     
@@ -107,6 +109,7 @@ class FirstViewController: UITableViewController {
         performSegue(withIdentifier: "ShowAddEditPlace", sender: self)
     }
     
+
 
 }//end class
 
