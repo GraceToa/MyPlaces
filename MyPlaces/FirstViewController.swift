@@ -24,11 +24,7 @@ class FirstViewController: UITableViewController {
         view.delegate = self
         view.dataSource = self
         
-        //load examples
-        let manager = ManagerPlaces.shared
-             for place in manager.someTestPlace{
-                manager.append(place)
-                }
+
     }
  
     //MARK: - TableView Methods
