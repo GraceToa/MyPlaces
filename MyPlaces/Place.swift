@@ -6,11 +6,32 @@
 //  Copyright © 2018 Grace Toa. All rights reserved.
 //
 
-import Foundation
 import MapKit
 
 
-class Place {
+class Place: Codable{
+    
+    enum PlaceKeys: String, CodingKey {
+        case name = "name"
+        case descriptionP = "description"
+        case image = "image"
+    }
+ 
+    required  convenience init(from: Decoder)throws{
+        let container = try from.container(keyedBy: PlaceKeys.self)
+        let name = try container.decode(String.self, forKey: .name)
+        let  descriptionP = try container.decode(String.self, forKey: .descriptionP)
+        let image = try container.decode(Data?.self, forKey: .image)
+        self.init(name:name, descriptionP:descriptionP, image_in:image)
+        
+    }
+    
+    func encode(to:Encoder)throws {
+        var container = to.container(keyedBy: PlaceKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(descriptionP, forKey: .descriptionP)
+        try container.encode(image, forKey: .image)
+    }
     
     /*enumeración tipo de datos que permiten definir una lista de valores posibles*/
     enum PlaceTypes{
@@ -18,14 +39,18 @@ class Place {
         case touristcPlace
     }
     
+ 
+    
     //MARK: Properties
     
     var id: String = ""
     var type: PlaceTypes = .genericPlace
     var name: String?
-    var description: String?
+    var descriptionP: String?
     var location: CLLocationCoordinate2D!
     var image: Data?
+    
+  
     
     //MARK: Initialization
     
@@ -33,22 +58,28 @@ class Place {
         self.id = UUID().uuidString
     }
     
-    init(name:String?,description:String?, image_in:Data?) {
+    init(name:String?,descriptionP:String?, image_in:Data?) {
         self.id = UUID().uuidString
         self.name = name
-        self.description = description
+        self.descriptionP = descriptionP
         self.image = image_in
     }
     
-    
-    init(type:PlaceTypes,name:String,description:String,image_in:Data?) {
+    init(type:PlaceTypes,name:String,descriptionP:String,image_in:Data?) {
         self.id=UUID().uuidString
         self.type = type
         self.name = name
-        self.description = description
+        self.descriptionP = descriptionP
         self.image = image_in
     }
+    
+  
+    
+    
 
-}
+}//end class Place
+
+
+
 
 

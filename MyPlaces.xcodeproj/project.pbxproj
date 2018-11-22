@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C000098E21A00C5700466F9C /* document.json in Resources */ = {isa = PBXBuildFile; fileRef = C000098D21A00C5700466F9C /* document.json */; };
+		C00009AD21A0BC7100466F9C /* documents.json in Resources */ = {isa = PBXBuildFile; fileRef = C00009AC21A0BC7100466F9C /* documents.json */; };
 		C0149F1B217CD65D0001CE4E /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */; };
 		C028EA9A2160C2A90032FC12 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA992160C2A90032FC12 /* Place.swift */; };
 		C028EA9C2160CBBF0032FC12 /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */; };
@@ -42,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C000098D21A00C5700466F9C /* document.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = document.json; path = ../../../UOC/TestJson/TestJson/Resource/document.json; sourceTree = "<group>"; };
+		C00009AC21A0BC7100466F9C /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
 		C0149F1A217CD65D0001CE4E /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		C028EA992160C2A90032FC12 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C028EA9B2160CBBF0032FC12 /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		C03C1FA5219D6A040068B6DB /* Recurs */ = {
 			isa = PBXGroup;
 			children = (
-				C000098D21A00C5700466F9C /* document.json */,
+				C00009AC21A0BC7100466F9C /* documents.json */,
 			);
 			path = Recurs;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C000098E21A00C5700466F9C /* document.json in Resources */,
+				C00009AD21A0BC7100466F9C /* documents.json in Resources */,
 				C0685AFD215BA6C600CC5E0E /* LaunchScreen.storyboard in Resources */,
 				C0685AFA215BA6C600CC5E0E /* Assets.xcassets in Resources */,
 				C0685AF8215BA6B900CC5E0E /* Main.storyboard in Resources */,

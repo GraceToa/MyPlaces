@@ -27,7 +27,7 @@ class PlaceTableViewCell: UITableViewCell {
     func bind(place: Place){
         
         namePlaceLabel.text = place.name
-        descriptionPlaceLabel.text = place.description
+        descriptionPlaceLabel.text = place.descriptionP
         
     }
 

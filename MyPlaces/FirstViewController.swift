@@ -68,18 +68,22 @@ class FirstViewController: UITableViewController {
             
            //se verifica si una fila(row) de la tabla está seleccionada para editarla
             if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
-                
-                //no funciona
-               // ManagerPlaces.shared.someTestPlace[selectedIndexPath.row] = place
-                
-                //busco ese place en el array lo reemplazo por los nuevos datos
+
+                //se busca ese place en el array lo reemplazo por los nuevos datos
                 let p = ManagerPlaces.shared.getItemAt(position: selectedIndexPath.row)
                 p?.name = place.name
-                p?.description = place.description
+                p?.descriptionP = place.descriptionP
+                //update Json file
+                
+                
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                
             }
             else{
                 //Add nuevo place
+                let jsonDatafromArray = ManagerPlaces.shared.jsonFromPlaces(place: place)
+                let fileUrl = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
+                ManagerPlaces.shared.writeDataInJson(jsonDatafromArray: jsonDatafromArray!,fileUrl: fileUrl)
                 ManagerPlaces.shared.append(place)
                 tableView.reloadData()
             }
@@ -105,7 +109,18 @@ class FirstViewController: UITableViewController {
         performSegue(withIdentifier: "ShowAddEditPlace", sender: self)
     }
     
-
-
+   
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }//end class
 

@@ -20,9 +20,13 @@ class PlaceTourist: Place {
     
     //MARK: Initialization
     
-    init(name:String,description:String,discount_tourist:String,image_in:Data?) {
-        super.init(type:.touristcPlace,name:name,description:description,image_in:image_in)
+    init(name:String,descriptionP:String,discount_tourist:String,image_in:Data?) {
+        super.init(type:.touristcPlace,name:name,descriptionP:descriptionP,image_in:image_in)
         self.discount_tourist=discount_tourist
+    }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
     
 }

@@ -35,7 +35,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
         if let place = place {
             navigationItem.title = place.name
             nameTextField.text = place.name
-            descriptionTextField.text = place.description
+            descriptionTextField.text = place.descriptionP
         }
   
         //activa el boton save solo si el textField tiene description de place
@@ -93,7 +93,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
             let nameP = nameTextField.text ?? ""
             let descP = descriptionTextField.text ?? ""
         //instancia un place que se pasa a FirstViewController
-            place = Place(name: nameP, description: descP, image_in: nil)
+            place = Place(name: nameP, descriptionP: descP, image_in: nil)
     }
 
     
