@@ -263,6 +263,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionP" destination="WfR-rH-Gso" id="Bf9-M9-iPe"/>
+                        <outlet property="location" destination="VdQ-1t-JD0" id="iN9-zC-ZJD"/>
                         <outlet property="nameP" destination="7oa-HO-5Z3" id="LMf-ij-yYy"/>
                     </connections>
                 </viewController>
@@ -348,6 +349,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTextField" destination="mLL-IH-QUS" id="zvu-m9-zzK"/>
+                        <outlet property="location2" destination="dWL-lM-8eN" id="Uvm-pc-r9w"/>
+                        <outlet property="locationTextField" destination="QEe-Ha-A7b" id="2u7-Mg-PeB"/>
                         <outlet property="nameTextField" destination="tPb-8E-czH" id="c7f-b4-UVq"/>
                         <outlet property="saveButton" destination="Y7L-P3-8ar" id="Dcl-pd-Q4l"/>
                     </connections>

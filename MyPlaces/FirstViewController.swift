@@ -73,11 +73,7 @@ class FirstViewController: UITableViewController {
                 let p = ManagerPlaces.shared.getItemAt(position: selectedIndexPath.row)
                 p?.name = place.name
                 p?.descriptionP = place.descriptionP
-                //update Json file
-                
-                
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                
             }
             else{
                 //Add nuevo place

@@ -14,8 +14,9 @@ class DetailPlaceViewController: UIViewController {
     
     @IBOutlet weak var nameP: UILabel!
     
- 
     @IBOutlet weak var descriptionP: UILabel!
+    
+    @IBOutlet weak var location: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class DetailPlaceViewController: UIViewController {
         if let place = place {
             nameP.text = place.name
             descriptionP.text = place.descriptionP
+            location.text = place.location.longitude.description
         }
         
     }

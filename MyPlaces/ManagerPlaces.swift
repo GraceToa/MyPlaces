@@ -6,7 +6,7 @@
 //  Copyright © 2018 Grace Toa. All rights reserved.
 //
 
-import Foundation
+import MapKit
 
 
 class ManagerPlaces{
@@ -14,7 +14,7 @@ class ManagerPlaces{
     //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
-    static let NAME_JSON_FILE = "uoco.json"
+    static let NAME_JSON_FILE = "o.json"
     private var places = [Place]()
     
     
@@ -54,10 +54,10 @@ class ManagerPlaces{
         
         Place(name: "UOC 22@",
               descriptionP: "Seu de la Universitat Oberta de Catalunya",
-              image_in: nil),
+              image_in: nil, location:CLLocationCoordinate2D(latitude: 41.44, longitude: 2.04)),
         Place(name: "Rostisseria Lolita",
               descriptionP: "Els millors pollastres de Sant Cugat",
-              image_in: nil)
+              image_in: nil, location:CLLocationCoordinate2D(latitude: 41.43, longitude: 2.03))
         //        Place(name: "CIFO L'Hospitalet",
         //              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
         //              image_in: nil),
@@ -93,6 +93,7 @@ class ManagerPlaces{
         let places = ManagerPlaces.shared.placesFromJSON()
         for place in places{
             ManagerPlaces.shared.append(place)
+            print(place.location)
         }
     }
     
@@ -118,10 +119,12 @@ class ManagerPlaces{
         do{
             //cojo json
             let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-            print("RIP\(pathFileJson)")
             //contenido de json
             let jsonData = try Data(contentsOf: pathFileJson)
             places = try jsonDecoder.decode([Place].self, from: jsonData)
+            for p in places{
+                print(p.name ?? "")
+            }
         }catch{
             print("error JSON ---> Place")
         }

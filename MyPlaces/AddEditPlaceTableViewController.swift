@@ -7,7 +7,7 @@
 //  UITextFieldDelegate.- protocol le dice al compilador que puede acutar como un delegado de campo de texto válido, esto significa que puede implementar métodos de protocolo para manejar entrada de texto
 
 import UIKit
-import os.log
+import MapKit
 
 class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     
@@ -18,6 +18,10 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     //MARK: IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    
+    @IBOutlet weak var locationTextField: UITextField!
+    
+    @IBOutlet weak var location2: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
 
@@ -87,13 +91,18 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
         super.prepare(for: segue, sender: sender)
         //verifica que el remitente es un botón
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
-                os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+                print("The save button was not pressed cancelling")
             return
         }
-            let nameP = nameTextField.text ?? ""
-            let descP = descriptionTextField.text ?? ""
+        
+        let nameP = nameTextField.text ?? ""
+        let descP = descriptionTextField.text ?? ""
+        let latitude = Double(locationTextField.text ?? "")
+        let longitude = Double(location2.text ?? "")
+        
         //instancia un place que se pasa a FirstViewController
-            place = Place(name: nameP, descriptionP: descP, image_in: nil)
+        place = Place(name: nameP, descriptionP: descP, image_in: nil, location: CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude:longitude ?? 0.0))
+        
     }
 
     

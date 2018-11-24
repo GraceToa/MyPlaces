@@ -15,6 +15,8 @@ class Place: Codable{
         case name = "name"
         case descriptionP = "description"
         case image = "image"
+        case latitude = "latitude"
+        case longitude = "longitude"
     }
  
     required  convenience init(from: Decoder)throws{
@@ -22,7 +24,10 @@ class Place: Codable{
         let name = try container.decode(String.self, forKey: .name)
         let  descriptionP = try container.decode(String.self, forKey: .descriptionP)
         let image = try container.decode(Data?.self, forKey: .image)
-        self.init(name:name, descriptionP:descriptionP, image_in:image)
+        let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
+        let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
+        let coordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.init(name:name, descriptionP:descriptionP, image_in:image,location:coordinate2D)
         
     }
     
@@ -31,6 +36,9 @@ class Place: Codable{
         try container.encode(name, forKey: .name)
         try container.encode(descriptionP, forKey: .descriptionP)
         try container.encode(image, forKey: .image)
+        try container.encode(location.latitude, forKey: .latitude)
+        try container.encode(location.longitude, forKey: .longitude)
+
     }
     
     /*enumeración tipo de datos que permiten definir una lista de valores posibles*/
@@ -58,11 +66,12 @@ class Place: Codable{
         self.id = UUID().uuidString
     }
     
-    init(name:String?,descriptionP:String?, image_in:Data?) {
+    init(name:String?,descriptionP:String?, image_in:Data?,location: CLLocationCoordinate2D) {
         self.id = UUID().uuidString
         self.name = name
         self.descriptionP = descriptionP
         self.image = image_in
+        self.location = location
     }
     
     init(type:PlaceTypes,name:String,descriptionP:String,image_in:Data?) {
