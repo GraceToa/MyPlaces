@@ -268,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4U-D6-kfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="110"/>
+            <point key="canvasLocation" x="2548" y="-272"/>
         </scene>
         <!--My Place-->
         <scene sceneID="aXf-t1-1Om">
@@ -355,7 +355,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cta-Mo-csg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ONG-cY-RAT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="-681"/>
+            <point key="canvasLocation" x="1683" y="-687"/>
         </scene>
     </scenes>
     <resources>
@@ -366,6 +366,6 @@
         <image name="titulGrayLight" width="255" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RgN-iS-E7o"/>
+        <segue reference="CDI-N4-LXp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -82,8 +82,8 @@ class FirstViewController: UITableViewController {
             else{
                 //Add nuevo place
                 let jsonDatafromArray = ManagerPlaces.shared.jsonFromPlaces(place: place)
-                let fileUrl = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-                ManagerPlaces.shared.writeDataInJson(jsonDatafromArray: jsonDatafromArray!,fileUrl: fileUrl)
+                let fileUrlJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
+                ManagerPlaces.shared.writeDataInJson(jsonDatafromArray: jsonDatafromArray!,fileUrl: fileUrlJson)
                 ManagerPlaces.shared.append(place)
                 tableView.reloadData()
             }

@@ -14,9 +14,9 @@ class ManagerPlaces{
     //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
-    static let NAME_JSON_FILE = "document.json"
+    static let NAME_JSON_FILE = "uoco.json"
     private var places = [Place]()
-
+    
     
     //MARK: Private Methods
     //Inserta un nuevo place en la lista de places
@@ -49,7 +49,7 @@ class ManagerPlaces{
         }
     }
     
-   //Only for demo purposes
+    //Only for demo purposes
     var someTestPlace = [
         
         Place(name: "UOC 22@",
@@ -58,15 +58,15 @@ class ManagerPlaces{
         Place(name: "Rostisseria Lolita",
               descriptionP: "Els millors pollastres de Sant Cugat",
               image_in: nil)
-//        Place(name: "CIFO L'Hospitalet",
-//              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
-//              image_in: nil),
-//        PlaceTourist(name: "CosmoCaixa",
-//                     description: "Museu de la Ciència de Barcelona",
-//                     discount_tourist: "50%", image_in: nil),
-//        PlaceTourist(name: "Park Güell",
-//                     description: "Obra d'Antoni Gaudí a Barcelona",
-//                     discount_tourist: "10%", image_in: nil)
+        //        Place(name: "CIFO L'Hospitalet",
+        //              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
+        //              image_in: nil),
+        //        PlaceTourist(name: "CosmoCaixa",
+        //                     description: "Museu de la Ciència de Barcelona",
+        //                     discount_tourist: "50%", image_in: nil),
+        //        PlaceTourist(name: "Park Güell",
+        //                     description: "Obra d'Antoni Gaudí a Barcelona",
+        //                     discount_tourist: "10%", image_in: nil)
         
     ]
     
@@ -76,30 +76,50 @@ class ManagerPlaces{
         var jsonData: Data!
         let jsonEncoder = JSONEncoder()
         do{
+            //me añade el place al array
             let places = addPlaceInArray(place: place)
+            //codifico en json
             jsonData = try jsonEncoder.encode(places)
         }catch{
             print(" Error encoding...")
             return nil
         }
-        return jsonData
+        return jsonData// devuelvo el json
     }
-
+    
     //leemos el json file
     // JSON --> ARRAY [PLACE]
     func dadesLoadJSON( ) {
-            let places = ManagerPlaces.shared.placesFromJSON()
-            for place in places{
-                ManagerPlaces.shared.append(place)
+        let places = ManagerPlaces.shared.placesFromJSON()
+        for place in places{
+            ManagerPlaces.shared.append(place)
+        }
+    }
+    
+    //  json File, se grabe en este los ejemplos de place que se cargan por defecto
+    //asi la próxima vez que se carge la app mostrara los place nuevos y los por defecto
+    //guardados en este json file
+    func dadesLoadJSONFirsTime( ) {
+        let places = ManagerPlaces.shared.someTestPlace
+        var jsonData: Data!
+        let jsonEncoder = JSONEncoder()
+        jsonData = try! jsonEncoder.encode(places)
+        let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
+        writeDataInJson(jsonDatafromArray: jsonData, fileUrl: pathFileJson)
+        for place in places{
+            ManagerPlaces.shared.append(place)
         }
     }
     
     //JSON --> ARRAY [PLACE]
     func placesFromJSON() -> [Place] {
         let jsonDecoder = JSONDecoder()
-        var places: [Place]!
+        var places: [Place] = []
         do{
+            //cojo json
             let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
+            print("RIP\(pathFileJson)")
+            //contenido de json
             let jsonData = try Data(contentsOf: pathFileJson)
             places = try jsonDecoder.decode([Place].self, from: jsonData)
         }catch{
@@ -119,22 +139,24 @@ class ManagerPlaces{
     
     func addPlaceInArray(place: Place) -> [Place] {
         var placesUpdateFromJSON:[Place]
-            placesUpdateFromJSON = placesFromJSON()
-            placesUpdateFromJSON.append(place)
-       
+        placesUpdateFromJSON = placesFromJSON()
+        placesUpdateFromJSON.append(place)
+        
         return placesUpdateFromJSON
     }
     
-//    func editPlaceInJSON(place:Place) -> [Place] {
-//         var places: [Place]
-//    }
+    //    func editPlaceInJSON(place:Place) -> [Place] {
+    //         var places: [Place]
+    //    }
     
     func findDocumentDir(file: String) -> URL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let filePaht = documentsURL!.appendingPathComponent(file)
-            return filePaht
-        
+        print(filePaht.path)
+        return filePaht
     }
     
+ 
+  
     
 }//end class

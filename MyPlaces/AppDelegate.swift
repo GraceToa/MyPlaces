@@ -19,13 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barStyle = .blackOpaque
     
         //check json file exist in local system
-        let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: "document.json")
+        let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
         let fileManager = FileManager.default
         var directory: ObjCBool = ObjCBool(false)
         if !fileManager.fileExists(atPath: (pathFileJson.path), isDirectory: &directory) {
-            for place in ManagerPlaces.shared.someTestPlace{
-                ManagerPlaces.shared.append(place)
-            }
+            fileManager.createFile(atPath: pathFileJson.path, contents: nil, attributes: nil)
+            ManagerPlaces.shared.dadesLoadJSONFirsTime()
         } else {
             print("JSON File Already exists")
             ManagerPlaces.shared.dadesLoadJSON()
