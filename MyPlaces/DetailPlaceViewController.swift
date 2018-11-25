@@ -26,7 +26,6 @@ class DetailPlaceViewController: UIViewController {
         if let place = place {
             nameP.text = place.name
             descriptionP.text = place.descriptionP
-            location.text = place.location.longitude.description
         }
         
     }

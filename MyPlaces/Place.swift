@@ -9,7 +9,7 @@
 import MapKit
 
 
-class Place: Codable{
+class Place: NSObject, Codable{
     
     enum PlaceKeys: String, CodingKey {
         case name = "name"
@@ -62,7 +62,7 @@ class Place: Codable{
     
     //MARK: Initialization
     
-    init(){
+    override init(){
         self.id = UUID().uuidString
     }
     
@@ -89,6 +89,16 @@ class Place: Codable{
 }//end class Place
 
 
-
-
+extension Place: MKAnnotation{
+    var coordinate: CLLocationCoordinate2D{
+        return location
+    }
+    
+    var title: String?{
+        return name
+    }
+    var subtitle: String?{
+        return descriptionP
+    }
+}
 

@@ -14,7 +14,7 @@ class ManagerPlaces{
     //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
-    static let NAME_JSON_FILE = "o.json"
+    static let NAME_JSON_FILE = "myPlaces.json"
     private var places = [Place]()
     
     
@@ -52,48 +52,36 @@ class ManagerPlaces{
     //Only for demo purposes
     var someTestPlace = [
         
-        Place(name: "UOC 22@",
-              descriptionP: "Seu de la Universitat Oberta de Catalunya",
-              image_in: nil, location:CLLocationCoordinate2D(latitude: 41.44, longitude: 2.04)),
-        Place(name: "Rostisseria Lolita",
-              descriptionP: "Els millors pollastres de Sant Cugat",
-              image_in: nil, location:CLLocationCoordinate2D(latitude: 41.43, longitude: 2.03))
-        //        Place(name: "CIFO L'Hospitalet",
-        //              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
-        //              image_in: nil),
-        //        PlaceTourist(name: "CosmoCaixa",
-        //                     description: "Museu de la Ciència de Barcelona",
-        //                     discount_tourist: "50%", image_in: nil),
-        //        PlaceTourist(name: "Park Güell",
-        //                     description: "Obra d'Antoni Gaudí a Barcelona",
-        //                     discount_tourist: "10%", image_in: nil)
+        Place(name: "UOC 22@", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil, location:  CLLocationCoordinate2D(latitude: 41.44, longitude: 2.04)),
+        
+        Place(name:  "Rostisseria Lolita", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil, location: CLLocationCoordinate2D(latitude: 41.40, longitude: 2.00)),
+        
+        Place(name:  "CIFO L'Hospitalet", descriptionP: "Seu del Centre d'Innovació i Formació per a l'Ocupació", image_in: nil, location: CLLocationCoordinate2D(latitude:41.42, longitude:2.01))
+        
         
     ]
     
-    //MARK:  method privat
-    //PLACE  ---> JSON func que recibe un place lo añade al array(places) retorna
-    func jsonFromPlaces(place: Place) -> Data? {
+    //MARK:  method helper
+    //PLACE  ---> JSON func que recibe un place lo añade al array(places)
+    func jsonFromPlaces(place: Place){
         var jsonData: Data!
         let jsonEncoder = JSONEncoder()
+        let fileUrlJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
         do{
-            //me añade el place al array
             let places = addPlaceInArray(place: place)
-            //codifico en json
             jsonData = try jsonEncoder.encode(places)
+            writeDataInJson(jsonDatafromArray: jsonData, fileUrl: fileUrlJson)
         }catch{
             print(" Error encoding...")
-            return nil
         }
-        return jsonData// devuelvo el json
     }
-    
-    //leemos el json file
+
     // JSON --> ARRAY [PLACE]
+    //load si ya existe un json en local 
     func dadesLoadJSON( ) {
         let places = ManagerPlaces.shared.placesFromJSON()
         for place in places{
             ManagerPlaces.shared.append(place)
-            print(place.location)
         }
     }
     
@@ -117,20 +105,16 @@ class ManagerPlaces{
         let jsonDecoder = JSONDecoder()
         var places: [Place] = []
         do{
-            //cojo json
             let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-            //contenido de json
             let jsonData = try Data(contentsOf: pathFileJson)
             places = try jsonDecoder.decode([Place].self, from: jsonData)
-            for p in places{
-                print(p.name ?? "")
-            }
         }catch{
             print("error JSON ---> Place")
         }
         return places
     }
     
+    //escribe en json file en la ruta local
     func writeDataInJson(jsonDatafromArray: Data ,fileUrl: URL)  {
         do{
             try jsonDatafromArray.write(to: fileUrl)
@@ -140,26 +124,21 @@ class ManagerPlaces{
         }
     }
     
+    //add Place in Places
     func addPlaceInArray(place: Place) -> [Place] {
         var placesUpdateFromJSON:[Place]
         placesUpdateFromJSON = placesFromJSON()
         placesUpdateFromJSON.append(place)
-        
         return placesUpdateFromJSON
     }
     
-    //    func editPlaceInJSON(place:Place) -> [Place] {
-    //         var places: [Place]
-    //    }
-    
+    // ruta en el local system de la app
     func findDocumentDir(file: String) -> URL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let filePaht = documentsURL!.appendingPathComponent(file)
-        print(filePaht.path)
         return filePaht
     }
-    
- 
   
-    
 }//end class
+
+

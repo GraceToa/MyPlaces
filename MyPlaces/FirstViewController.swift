@@ -18,12 +18,11 @@ class FirstViewController: UITableViewController {
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Places", style: .plain, target: nil, action: nil)
+        
         //to set delegate and dataSource for our UITableView!
         let view = self.view as! UITableView
-        //se ha de informar siempre (manual o automatico)
         view.delegate = self
         view.dataSource = self
-        
 
     }
  
@@ -40,7 +39,6 @@ class FirstViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
         let placeCell = ManagerPlaces.shared.getItemAt(position: indexPath.item)!
         cell.bind(place: placeCell)
-        
         return cell
     }
     
@@ -60,7 +58,7 @@ class FirstViewController: UITableViewController {
     
     //MARK: Actions
     
-    //En el botton Save creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
+    //En el botton Done(AddEdit...) creamos un Unwind Segue que nos permite volver a la escena anterior de nuestro Storyboard
     //Un unwind segue puede retroceder uno o más segmentos para devolver a un Viewcontroller específico
     //Manejamos los dos casos: agregar un nuevo place y editar uno existente
     @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
@@ -77,9 +75,7 @@ class FirstViewController: UITableViewController {
             }
             else{
                 //Add nuevo place
-                let jsonDatafromArray = ManagerPlaces.shared.jsonFromPlaces(place: place)
-                let fileUrlJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-                ManagerPlaces.shared.writeDataInJson(jsonDatafromArray: jsonDatafromArray!,fileUrl: fileUrlJson)
+                ManagerPlaces.shared.jsonFromPlaces(place: place)
                 ManagerPlaces.shared.append(place)
                 tableView.reloadData()
             }
@@ -101,6 +97,7 @@ class FirstViewController: UITableViewController {
         }
     }
     
+    //MARK: buttons helper
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "ShowAddEditPlace", sender: self)
     }

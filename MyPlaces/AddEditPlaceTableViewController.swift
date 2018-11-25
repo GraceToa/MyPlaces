@@ -8,41 +8,39 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
+class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLLocationManagerDelegate {
     
     //MARK: Properties
     //instancia para añadir un nuevo place y pasarlo a FirstViewController
     var place: Place?
-    
+
+    @IBOutlet weak var checkImg: UIImageView!
+    var img = false
+  
     //MARK: IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
-    @IBOutlet weak var locationTextField: UITextField!
-    
-    @IBOutlet weak var location2: UITextField!
+    @IBOutlet weak var addLocation: UILabel!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-
+    //MARK: CLLocationCoordinate2D properties
+    var latitudeMap: CLLocationDegrees! = 0.0
+    var longitudeMap: CLLocationDegrees! = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
-
-        
         // Handle the text field’s user input through delegate callbacks.
          nameTextField.delegate = self
-
         // Configura vistas si se edita un place existente
         if let place = place {
             navigationItem.title = place.name
             nameTextField.text = place.name
             descriptionTextField.text = place.descriptionP
         }
-  
-        //activa el boton save solo si el textField tiene description de place
         updateSaveButtonState()
     }
 
@@ -67,9 +65,8 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     }
   
     
-    //MARK: Acitons
-    //MARK: Navigation
-
+    //MARK: Actions
+  
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
@@ -86,9 +83,13 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
     }
     
     //Método que permite configurar datos que enviar al source ViewController (FirstViewController)
-    //se usa un unwind segue(save Button) que retrocede un segmento
+    //se usa un unwind segue(done Button) que retrocede un segmento
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        if (segue.identifier == "ShowLocation"){
+            let bt = segue.destination as? MapViewController
+            bt?.buttonIsHidden = true
+        }
         //verifica que el remitente es un botón
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
                 print("The save button was not pressed cancelling")
@@ -97,25 +98,32 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate {
         
         let nameP = nameTextField.text ?? ""
         let descP = descriptionTextField.text ?? ""
-        let latitude = Double(locationTextField.text ?? "")
-        let longitude = Double(location2.text ?? "")
+        let coordinate = CLLocationCoordinate2D(latitude: latitudeMap, longitude: longitudeMap)
         
         //instancia un place que se pasa a FirstViewController
-        place = Place(name: nameP, descriptionP: descP, image_in: nil, location: CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude:longitude ?? 0.0))
+        place = Place(name: nameP, descriptionP: descP, image_in: nil, location: coordinate)
         
     }
-
     
-    //MARK: Private Methods
+    //Datos enviados desde MapViewController
+    @IBAction func unwindFromMapViewController(sender: UIStoryboardSegue) {
+         if let sourceViewController = sender.source as? MapViewController{
+            latitudeMap = sourceViewController.latitude
+            longitudeMap = sourceViewController.longitude
+            if img == false{
+                self.checkImg.image = UIImage(named: "check.png")
+            }
+        }
+    }
     
-    //método auxiliar para desactivar el botón guardar si el Text Field está vacio
+    //MARK: buttons helper
+    //método auxiliar para activar el botón done si cumple los Enabled
     private func updateSaveButtonState(){
         //desactiva el boton guardar si el textField esta vacio
         let textD = descriptionTextField.text ?? ""
         let textN = nameTextField.text ?? ""
         saveButton.isEnabled = !textD.isEmpty
         saveButton.isEnabled = !textN.isEmpty
-
     }
     
     

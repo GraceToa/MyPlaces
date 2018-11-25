@@ -29,12 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("JSON File Already exists")
             ManagerPlaces.shared.dadesLoadJSON()
         }
-        
         return true
     }
-
-    //MARK: Method private
-
 
   
 }
