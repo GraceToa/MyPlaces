@@ -98,7 +98,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
         
         let nameP = nameTextField.text ?? ""
         let descP = descriptionTextField.text ?? ""
-        let coordinate = CLLocationCoordinate2D(latitude: latitudeMap, longitude: longitudeMap)
+        let coordinate = CLLocationCoordinate2D(latitude: latitudeMap!, longitude: longitudeMap!)
         
         //instancia un place que se pasa a FirstViewController
         place = Place(name: nameP, descriptionP: descP, image_in: nil, location: coordinate)
