@@ -13,16 +13,17 @@ import MapKit
 class MapViewController: UIViewController,CLLocationManagerDelegate {
     
     //MARK: CLLocationCoordinate2D properties
-    let locationManager = CLLocationManager()
+    let locManager = CLLocationManager()
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
+    var currentLocation: CLLocation!
     
     //MARK: Outlets
-    @IBOutlet weak var addLocationButton: UIBarButtonItem!
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var map: MKMapView! = nil
+    
     //MARK: variables
     var buttonIsHidden: Bool?
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,12 +32,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()//permisos info.plis
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        
+ 
         //load places in map
         let places = ManagerPlaces.shared.placesFromJSON()
         let region = MKCoordinateRegion(center: places[1].coordinate, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
@@ -49,7 +45,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
             self.latitude = location.coordinate.latitude
             self.longitude = location.coordinate.longitude
         }
-        manager.stopUpdatingLocation()
+       
     }
     
     //MARK: actions
@@ -58,11 +54,23 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         if let destination = segue.destination as? AddEditPlaceTableViewController {
             destination.latitudeMap = latitude
             destination.longitudeMap = longitude
+          
         }
     }
     
-    
+  
+    @IBAction func getPosition(_ sender: Any) {
+       
+        if CLLocationManager.locationServicesEnabled(){
+            locManager.delegate = self
+            locManager.requestWhenInUseAuthorization()//permisos info.plis
+            locManager.desiredAccuracy = kCLLocationAccuracyBest
+            locManager.startUpdatingLocation()
+        }
 
+        
+    }
+    
     
 
 }//end class

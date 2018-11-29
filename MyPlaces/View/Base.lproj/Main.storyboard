@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -184,13 +184,13 @@
                     <navigationItem key="navigationItem" title="My Places" id="Rl1-0U-Sn7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hyR-iF-7Pd" userLabel="AddLocation">
                             <connections>
+                                <action selector="getPosition:" destination="6qC-0o-DlM" id="vP7-Y1-0Zs"/>
                                 <segue destination="72E-Ir-I1Y" kind="unwind" unwindAction="unwindFromMapViewControllerWithSender:" id="455-ZG-dGD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addLocationButton" destination="hyR-iF-7Pd" id="32x-0C-DJa"/>
-                        <outlet property="map" destination="9q0-u8-pcc" id="Wsq-uD-kGm"/>
+                        <outlet property="map" destination="9q0-u8-pcc" id="aaW-ve-cDJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9X-pc-CtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
