@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
         let fileManager = FileManager.default
         var directory: ObjCBool = ObjCBool(false)
+        
         if !fileManager.fileExists(atPath: (pathFileJson.path), isDirectory: &directory) {
             fileManager.createFile(atPath: pathFileJson.path, contents: nil, attributes: nil)
             ManagerPlaces.shared.dadesLoadJSONFirsTime()

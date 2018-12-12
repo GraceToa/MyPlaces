@@ -14,9 +14,9 @@ class ManagerPlaces{
     //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
-    static let NAME_JSON_FILE = "myPlaces.json"
+    static let NAME_JSON_FILE = "barc.json"
     private var places = [Place]()
-    
+ 
     
     //MARK: Private Methods
     //Inserta un nuevo place en la lista de places
@@ -37,44 +37,14 @@ class ManagerPlaces{
         return places[position];
     }
     
-    /*Return un place con un id especifico, si el id no existe se controlara con un opcional*/
-    func getItemById(_ id: String)->Place?{
-        return places.filter{$0.id == id}.first
-    }
-    
     //Remove un place desde la lista
     func remove(_ place:Place){
         if let index = places.index(where: {$0.name == place.name}) {
             places.remove(at: index)
         }
     }
-    
-    //Only for demo purposes
-    var someTestPlace = [
-        
-        Place(name: "UOC 22@", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil, location:  CLLocationCoordinate2D(latitude: 41.44, longitude: 2.04)),
-        
-        Place(name:  "Rostisseria Lolita", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil, location: CLLocationCoordinate2D(latitude: 41.40, longitude: 2.00)),
-        
-        Place(name:  "CIFO L'Hospitalet", descriptionP: "Seu del Centre d'Innovació i Formació per a l'Ocupació", image_in: nil, location: CLLocationCoordinate2D(latitude:41.42, longitude:2.01))
-        
-        
-    ]
-    
+
     //MARK:  method helper
-    //PLACE  ---> JSON func que recibe un place lo añade al array(places)
-    func jsonFromPlaces(place: Place){
-        var jsonData: Data!
-        let jsonEncoder = JSONEncoder()
-        let fileUrlJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-        do{
-            let places = addPlaceInArray(place: place)
-            jsonData = try jsonEncoder.encode(places)
-            writeDataInJson(jsonDatafromArray: jsonData, fileUrl: fileUrlJson)
-        }catch{
-            print(" Error encoding...")
-        }
-    }
 
     // JSON --> ARRAY [PLACE]
     //load si ya existe un json en local 
@@ -89,7 +59,7 @@ class ManagerPlaces{
     //asi la próxima vez que se carge la app mostrara los place nuevos y los por defecto
     //guardados en este json file
     func dadesLoadJSONFirsTime( ) {
-        let places = ManagerPlaces.shared.someTestPlace
+        let places = ManagerPlaces.shared.someTestPlace      
         var jsonData: Data!
         let jsonEncoder = JSONEncoder()
         jsonData = try! jsonEncoder.encode(places)
@@ -114,6 +84,18 @@ class ManagerPlaces{
         return places
     }
     
+  //when edit a place. update json file
+    func updateJson() {
+        var jsonData: Data!
+        let jsonEncoder = JSONEncoder()
+        let fileUrlJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
+        do{
+            jsonData = try! jsonEncoder.encode(places)
+            writeDataInJson(jsonDatafromArray: jsonData, fileUrl: fileUrlJson)
+        }
+    }
+   
+    
     //escribe en json file en la ruta local
     func writeDataInJson(jsonDatafromArray: Data ,fileUrl: URL)  {
         do{
@@ -124,21 +106,36 @@ class ManagerPlaces{
         }
     }
     
-    //add Place in Places
-    func addPlaceInArray(place: Place) -> [Place] {
-        var placesUpdateFromJSON:[Place]
-        placesUpdateFromJSON = placesFromJSON()
-        placesUpdateFromJSON.append(place)
-        return placesUpdateFromJSON
-    }
-    
     // ruta en el local system de la app
     func findDocumentDir(file: String) -> URL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let filePaht = documentsURL!.appendingPathComponent(file)
         return filePaht
     }
-  
+    
+    //image default for no exist 
+    func loadImgTest() -> Data {
+        let url = URL(fileURLWithPath: "/Users/GraceToa/Documents/MyPlaces/MyPlaces/imgTest/bcn.jpg")
+        let imageData:NSData = NSData(contentsOf: url)!
+        let image = UIImage(data: imageData as Data)
+        let imageD = image?.pngData()
+        return imageD!
+    }
+    
+    
+    //Only for demo purposes
+    var someTestPlace = [
+        Place(name: "UOC 22@", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil
+            , location:  CLLocationCoordinate2D(latitude: 41.44, longitude: 2.04)),
+        
+        Place(name:  "Rostisseria Lolita", descriptionP: "Seu de la Universitat Oberta de Catalunya", image_in: nil, location: CLLocationCoordinate2D(latitude: 41.40, longitude: 2.00)),
+        
+        Place(name:  "CIFO L'Hospitalet", descriptionP: "Seu del Centre d'Innovació i Formació per a l'Ocupació", image_in: nil, location: CLLocationCoordinate2D(latitude:41.42, longitude:2.01))
+    ]
+    
+   
+    
+ 
 }//end class
 
 

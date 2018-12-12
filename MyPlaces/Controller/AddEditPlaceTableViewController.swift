@@ -10,36 +10,44 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLLocationManagerDelegate {
+class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     //MARK: Properties
     //instancia para añadir un nuevo place y pasarlo a FirstViewController
     var place: Place?
-
+    
     @IBOutlet weak var checkImg: UIImageView!
     var img = false
   
     //MARK: IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
-    
-    @IBOutlet weak var addLocation: UILabel!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    //MARK: PickerController
+    @IBOutlet weak var imgPickerView: UIImageView!
     
     //MARK: CLLocationCoordinate2D properties
     var latitudeMap: CLLocationDegrees! = 0.0
     var longitudeMap: CLLocationDegrees! = 0.0
     
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulNI.png"))
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulB.png"))
+        
         // Handle the text field’s user input through delegate callbacks.
          nameTextField.delegate = self
+        
         // Configura vistas si se edita un place existente
         if let place = place {
             navigationItem.title = place.name
             nameTextField.text = place.name
             descriptionTextField.text = place.descriptionP
+            let imgDefault =  ManagerPlaces.shared.loadImgTest()
+            imgPickerView.image = UIImage(data: place.image ?? imgDefault )
         }
         updateSaveButtonState()
     }
@@ -65,8 +73,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
     }
   
     
-    //MARK: Actions
-  
+    //MARK: Actions buttons
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
@@ -82,32 +89,49 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
         }
     }
     
+    //open Library local system
+    @IBAction func btnPickerImg(_ sender: Any) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    //MARK: PickerController permisos info.plis
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        self.imgPickerView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.imgPickerView.contentMode = .scaleAspectFill
+        self.imgPickerView.clipsToBounds = true
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: methods privates
     //Método que permite configurar datos que enviar al source ViewController (FirstViewController)
     //se usa un unwind segue(done Button) que retrocede un segmento
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if (segue.identifier == "ShowLocation"){
-            let bt = segue.destination as? MapViewController
+            let bt = segue.destination as? LocationViewController
             bt?.buttonIsHidden = true
         }
-        //verifica que el remitente es un botón
-        guard let button = sender as? UIBarButtonItem, button === saveButton else {
-                print("The save button was not pressed cancelling")
-            return
-        }
-        
         let nameP = nameTextField.text ?? ""
         let descP = descriptionTextField.text ?? ""
         let coordinate = CLLocationCoordinate2D(latitude: latitudeMap!, longitude: longitudeMap!)
-        
-        //instancia un place que se pasa a FirstViewController
-        place = Place(name: nameP, descriptionP: descP, image_in: nil, location: coordinate)
-        
+        let imgData = imgPickerView.image?.pngData()
+     
+        //objeto place que se pasa a FirstViewController
+        place = Place(name: nameP, descriptionP: descP, image_in: imgData, location: coordinate)
     }
     
     //Datos enviados desde MapViewController
     @IBAction func unwindFromMapViewController(sender: UIStoryboardSegue) {
-         if let sourceViewController = sender.source as? MapViewController{
+         if let sourceViewController = sender.source as? LocationViewController{
             latitudeMap = sourceViewController.latitude
             longitudeMap = sourceViewController.longitude
             if img == false{
@@ -125,7 +149,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
         saveButton.isEnabled = !textD.isEmpty
         saveButton.isEnabled = !textN.isEmpty
     }
-    
+
     
 }//end class
 

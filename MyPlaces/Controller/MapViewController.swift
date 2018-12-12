@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-
+import CoreLocation
 
 class MapViewController: UIViewController,CLLocationManagerDelegate {
     
@@ -16,23 +16,15 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
     let locManager = CLLocationManager()
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
-    var currentLocation: CLLocation!
+
     
     //MARK: Outlets
     @IBOutlet weak var map: MKMapView! = nil
     
-    //MARK: variables
-    var buttonIsHidden: Bool?
   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        if buttonIsHidden == true {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-            self.navigationItem.leftBarButtonItem?.isEnabled = true
-        }
- 
         //load places in map
         let places = ManagerPlaces.shared.placesFromJSON()
         let region = MKCoordinateRegion(center: places[1].coordinate, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
@@ -47,29 +39,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         }
        
     }
+ 
     
-    //MARK: actions
-    //Recoge la localización del GPS y envia datos 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? AddEditPlaceTableViewController {
-            destination.latitudeMap = latitude
-            destination.longitudeMap = longitude
-          
-        }
-    }
-    
-  
-    @IBAction func getPosition(_ sender: Any) {
-       
-        if CLLocationManager.locationServicesEnabled(){
-            locManager.delegate = self
-            locManager.requestWhenInUseAuthorization()//permisos info.plis
-            locManager.desiredAccuracy = kCLLocationAccuracyBest
-            locManager.startUpdatingLocation()
-        }
-
-        
-    }
+ 
     
     
 

@@ -51,7 +51,7 @@ class Place: NSObject, Codable{
     
     //MARK: Properties
     
-    var id: String = ""
+    var id: String = UUID().uuidString
     var type: PlaceTypes = .genericPlace
     var name: String?
     var descriptionP: String?
@@ -61,30 +61,18 @@ class Place: NSObject, Codable{
   
     
     //MARK: Initialization
-    
+//
     override init(){
         self.id = UUID().uuidString
     }
-    
+
     init(name:String?,descriptionP:String?, image_in:Data?,location: CLLocationCoordinate2D) {
         self.id = UUID().uuidString
         self.name = name
         self.descriptionP = descriptionP
         self.image = image_in
         self.location = location
-    }
-    
-    init(type:PlaceTypes,name:String,descriptionP:String,image_in:Data?) {
-        self.id=UUID().uuidString
-        self.type = type
-        self.name = name
-        self.descriptionP = descriptionP
-        self.image = image_in
-    }
-    
-  
-    
-    
+    }  
 
 }//end class Place
 
