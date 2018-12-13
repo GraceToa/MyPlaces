@@ -13,7 +13,7 @@ import UIKit
 class FirstViewController: UITableViewController {
   
     //MARK: images Background
-    var images:[UIImage] = [UIImage(named: "fondo1.png")!,UIImage(named: "fondo2.png")!,UIImage(named: "fondo3.png")!,UIImage(named: "fondo4.png")!,UIImage(named: "fondo5.png")!,UIImage(named: "fondo6.png")!]
+    var images:[UIImage] = [UIImage(named: "fondo1.png")!,UIImage(named: "fondo2.png")!,UIImage(named: "fondo3.png")!,UIImage(named: "fondo4.png")!,UIImage(named: "fondo5.png")!,UIImage(named: "fondo6.png")!,UIImage(named: "fondo7.png")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()

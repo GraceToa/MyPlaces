@@ -12,10 +12,6 @@ import CoreLocation
 
 class MapViewController: UIViewController,CLLocationManagerDelegate {
     
-    //MARK: CLLocationCoordinate2D properties
-    let locManager = CLLocationManager()
-    var latitude: CLLocationDegrees!
-    var longitude: CLLocationDegrees!
 
     
     //MARK: Outlets
@@ -31,14 +27,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         map.setRegion(region, animated: true)
         map.addAnnotations(places)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first{
-            self.latitude = location.coordinate.latitude
-            self.longitude = location.coordinate.longitude
-        }
-       
-    }
+
  
     
  

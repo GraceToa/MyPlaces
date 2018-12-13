@@ -14,7 +14,7 @@ class ManagerPlaces{
     //MARK: Properties
     //Patrón Singleton
     static let shared = ManagerPlaces()
-    static let NAME_JSON_FILE = "barc.json"
+    static let NAME_JSON_FILE = "places.json"
     private var places = [Place]()
  
     

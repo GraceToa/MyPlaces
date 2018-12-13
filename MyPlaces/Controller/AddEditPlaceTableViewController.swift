@@ -23,7 +23,9 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var addLocationButton: UIButton!
     
+    @IBOutlet weak var galeryButton: UIButton!
     //MARK: PickerController
     @IBOutlet weak var imgPickerView: UIImageView!
     
@@ -36,10 +38,17 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulB.png"))
-        
         // Handle the text field’s user input through delegate callbacks.
-         nameTextField.delegate = self
+        nameTextField.delegate = self
+        
+        //config style
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "titulB.png"))
+        nameTextField.layer.borderColor = UIColor.gray.cgColor
+        descriptionTextField.layer.borderColor = UIColor.gray.cgColor
+        nameTextField.layer.borderWidth = 1.0
+        descriptionTextField.layer.borderWidth = 1.0
+        addLocationButton.layer.cornerRadius = 12
+        galeryButton.layer.cornerRadius = 12
         
         // Configura vistas si se edita un place existente
         if let place = place {
@@ -49,7 +58,7 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
             let imgDefault =  ManagerPlaces.shared.loadImgTest()
             imgPickerView.image = UIImage(data: place.image ?? imgDefault )
         }
-        updateSaveButtonState()
+
     }
 
     
