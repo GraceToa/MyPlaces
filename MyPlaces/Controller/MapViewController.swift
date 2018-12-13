@@ -22,7 +22,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         super.viewDidLoad()
         
         //load places in map
-        let places = ManagerPlaces.shared.placesFromJSON()
+        let places = ManagerPlaces.shared.getPlaces()
+        for p in places{
+            print(p.location as Any)
+        }
         let region = MKCoordinateRegion(center: places[1].coordinate, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
         map.setRegion(region, animated: true)
         map.addAnnotations(places)

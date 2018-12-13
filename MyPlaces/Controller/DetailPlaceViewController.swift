@@ -38,6 +38,7 @@ class DetailPlaceViewController: UIViewController,CLLocationManagerDelegate  {
             descriptionP.sizeToFit()
             let imgDefault =  ManagerPlaces.shared.loadImgTest()
             imageP.image = UIImage(data: place.image ?? imgDefault )
+            
         }
         
         locManager.delegate = self

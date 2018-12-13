@@ -57,6 +57,8 @@ class AddEditPlaceTableViewController: UIViewController,UITextFieldDelegate, CLL
             descriptionTextField.text = place.descriptionP
             let imgDefault =  ManagerPlaces.shared.loadImgTest()
             imgPickerView.image = UIImage(data: place.image ?? imgDefault )
+            latitudeMap = place.coordinate.latitude
+            longitudeMap = place.coordinate.longitude
         }
 
     }

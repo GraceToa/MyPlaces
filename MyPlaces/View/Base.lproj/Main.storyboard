@@ -357,8 +357,6 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="394" placeholderIntrinsicHeight="243" highlightedImage="fondo1" translatesAutoresizingMaskIntoConstraints="NO" id="xND-KP-Hge">
                                         <rect key="frame" x="0.0" y="305.66666666666669" width="394" height="243.00000000000006"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="394" id="DYA-20-tLn"/>
-                                            <constraint firstAttribute="height" constant="243.00000000000006" id="P5K-f5-mR8"/>
                                             <constraint firstAttribute="width" secondItem="xND-KP-Hge" secondAttribute="height" multiplier="394:243" id="jVn-N1-cmu"/>
                                         </constraints>
                                     </imageView>
