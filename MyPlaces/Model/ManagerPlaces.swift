@@ -115,9 +115,10 @@ class ManagerPlaces{
     
     //image default for no exist 
     func loadImgTest() -> Data {
-        let url = URL(fileURLWithPath: "/Users/GraceToa/Documents/MyPlaces/MyPlaces/imgTest/bcn.jpg")
-        let imageData:NSData = NSData(contentsOf: url)!
-        let image = UIImage(data: imageData as Data)
+//        let url = URL(fileURLWithPath: "/Users/GraceToa/Documents/MyPlaces/MyPlaces/imgTest/bcn.jpg")
+//        let imageData:NSData = NSData(contentsOf: url)!
+//        let image = UIImage(data: imageData as Data)
+        let image = UIImage(named: "bcn.jpg")
         let imageD = image?.pngData()
         return imageD!
     }
