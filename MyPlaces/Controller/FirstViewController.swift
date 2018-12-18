@@ -52,9 +52,11 @@ class FirstViewController: UITableViewController {
         return 142
     }
     
-    //Método que borra un place, Cuando el usuario se desliza horizontalmente a través de una fila,
+    //Método que borra un place, si usuario se desliza horizontalmente a través de una fila,
     //el estilo de edición de la celda se configura para eliminar
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         let indexPathCell = ManagerPlaces.shared.getItemAt(position: indexPath.row)
         ManagerPlaces.shared.remove(indexPathCell!)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
@@ -68,7 +70,8 @@ class FirstViewController: UITableViewController {
     //Un unwind segue puede retroceder uno o más segmentos para devolver a un Viewcontroller específico
     //Manejamos los dos casos: agregar un nuevo place y editar uno existente
     @IBAction func unwindAddEditPlaceDetail(sender: UIStoryboardSegue){
-        if let sourceViewController = sender.source as? AddEditPlaceTableViewController, let place = sourceViewController.place {
+        if let sourceViewController = sender.source as? AddEditPlaceTableViewController,
+            let place = sourceViewController.place {
             
            //se verifica si una fila(row) de la tabla está seleccionada para editarla
             if let selectedIndexPath = self.tableView.indexPathForSelectedRow{

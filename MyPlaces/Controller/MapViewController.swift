@@ -8,11 +8,8 @@
 
 import UIKit
 import MapKit
-import CoreLocation
 
 class MapViewController: UIViewController,CLLocationManagerDelegate {
-    
-
     
     //MARK: Outlets
     @IBOutlet weak var map: MKMapView! = nil
@@ -23,19 +20,12 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         
         //load places in map
         let places = ManagerPlaces.shared.getPlaces()
-        for p in places{
-            print(p.location as Any)
-        }
-        let region = MKCoordinateRegion(center: places[1].coordinate, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
+        let region = MKCoordinateRegion(center: places[1].coordinate,
+                                        latitudinalMeters: 10_000,
+                                        longitudinalMeters: 10_000)
         map.setRegion(region, animated: true)
         map.addAnnotations(places)
-    }
-
- 
-    
- 
-    
-    
+    } 
 
 }//end class
 

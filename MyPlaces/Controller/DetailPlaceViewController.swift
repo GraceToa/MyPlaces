@@ -32,13 +32,14 @@ class DetailPlaceViewController: UIViewController,CLLocationManagerDelegate  {
         super.viewDidLoad()
         
         title = place?.name
+        imageP.layer.borderColor = UIColor.green.cgColor
+
         if let place = place {
-            nameP.text = place.name
+            nameP.text = "Location: \( place.name ?? "")"
             descriptionP.text = place.descriptionP
             descriptionP.sizeToFit()
             let imgDefault =  ManagerPlaces.shared.loadImgTest()
             imageP.image = UIImage(data: place.image ?? imgDefault )
-            
         }
         
         locManager.delegate = self
